@@ -1,68 +1,67 @@
-//LeetCode    622.Éè¼ÆÑ­»·¶ÓÁÐ
+//LeetCode    622.è®¾è®¡å¾ªçŽ¯é˜Ÿåˆ—
 
-/*
-//¶¨ÒåË«ÏòÑ­»·¶ÓÁÐ½á¹¹
+//å®šä¹‰åŒå‘å¾ªçŽ¯é˜Ÿåˆ—ç»“æž„
 typedef struct {
-    int* arr; //´æ´¢ÖµµÄÊý×é
-    int head; //Ö¸Ïò¶ÓÍ·µÄÏÂ±ê
-    int tail; //Ö¸Ïò¶ÓÎ²µÄÏÂÒ»¸öÎ»ÖÃµÄÏÂ±ê
-    int k; //¶ÓÁÐµÄÈÝÁ¿
+    int* arr; //å­˜å‚¨å€¼çš„æ•°ç»„
+    int head; //æŒ‡å‘é˜Ÿå¤´çš„ä¸‹æ ‡
+    int tail; //æŒ‡å‘é˜Ÿå°¾çš„ä¸‹ä¸€ä¸ªä½ç½®çš„ä¸‹æ ‡
+    int k; //é˜Ÿåˆ—çš„å®¹é‡
 } MyCircularQueue;
 
 
-//¶ÓÁÐ³õÊ¼»¯
+//é˜Ÿåˆ—åˆå§‹åŒ–
 MyCircularQueue* myCircularQueueCreate(int k) {
     MyCircularQueue* obj = malloc(sizeof(MyCircularQueue));
-    //¿ª±ÙÊý×éÈÝÁ¿Îª¶ÓÁÐÈÝÁ¿¼Ó1¸öÓÃÓÚÅÐ¶Ï¶ÓÁÐÒÑÂúÇé¿ö
+    //å¼€è¾Ÿæ•°ç»„å®¹é‡ä¸ºé˜Ÿåˆ—å®¹é‡åŠ 1ä¸ªç”¨äºŽåˆ¤æ–­é˜Ÿåˆ—å·²æ»¡æƒ…å†µ
     obj->arr = malloc(sizeof(int) * (k + 1));
     obj->head = obj->tail = 0;
     obj->k = k;
     return obj;
 }
 
-//ÅÐ¶ÏÊÇ·ñÎª¿Õ
+//åˆ¤æ–­æ˜¯å¦ä¸ºç©º
 bool myCircularQueueIsEmpty(MyCircularQueue* obj) {
-    //headºÍtailÏÂ±êÏàµÈÊ±Îª¿Õ
+    //headå’Œtailä¸‹æ ‡ç›¸ç­‰æ—¶ä¸ºç©º
     return obj->head == obj->tail;
 }
 
-//ÅÐ¶ÏÊÇ·ñÒÑÂú
+//åˆ¤æ–­æ˜¯å¦å·²æ»¡
 bool myCircularQueueIsFull(MyCircularQueue* obj) {
-    //tailµÄÏÂÒ»¸öÎ»ÖÃÎª¶ÓÍ·Ê±¶ÓÁÐÒÑÂú£¬È¡Ä£ÓÃÓÚÊµÏÖÑ­»·×÷ÓÃºÍ·ÀÖ¹Ô½½ç·ÃÎÊ
-    //½âÊÍ£ºtail == kÊ±£¬tail + 1È¡Ä£k + 1ÈÃtailÖ¸ÏòÊý×é¿ªÍ·
+    //tailçš„ä¸‹ä¸€ä¸ªä½ç½®ä¸ºé˜Ÿå¤´æ—¶é˜Ÿåˆ—å·²æ»¡ï¼Œå–æ¨¡ç”¨äºŽå®žçŽ°å¾ªçŽ¯ä½œç”¨å’Œé˜²æ­¢è¶Šç•Œè®¿é—®
+    //è§£é‡Šï¼štail == kæ—¶ï¼Œtail + 1å–æ¨¡k + 1è®©tailæŒ‡å‘æ•°ç»„å¼€å¤´
     return (obj->tail + 1) % (obj->k + 1) == obj->head;
 }
 
-//Èë¶Ó
+//å…¥é˜Ÿ
 bool myCircularQueueEnQueue(MyCircularQueue* obj, int value) {
-    //¶ÓÁÐÒÑÂú·µ»Øfalse
+    //é˜Ÿåˆ—å·²æ»¡è¿”å›žfalse
     if (myCircularQueueIsFull(obj))
     {
         return false;
     }
     obj->arr[obj->tail] = value;
-    //tail++Ö¸Ïò¶ÓÎ²µÄÏÂÒ»¸öÎ»ÖÃ£¬È¡Ä£ÓÃÓÚÊµÏÖÑ­»·×÷ÓÃºÍ·ÀÖ¹Ô½½ç·ÃÎÊ
-    //½âÊÍ£ºtail == kÊ±£¬tail + 1È¡Ä£k + 1ÈÃtailÖ¸ÏòÊý×é¿ªÍ·
+    //tail++æŒ‡å‘é˜Ÿå°¾çš„ä¸‹ä¸€ä¸ªä½ç½®ï¼Œå–æ¨¡ç”¨äºŽå®žçŽ°å¾ªçŽ¯ä½œç”¨å’Œé˜²æ­¢è¶Šç•Œè®¿é—®
+    //è§£é‡Šï¼štail == kæ—¶ï¼Œtail + 1å–æ¨¡k + 1è®©tailæŒ‡å‘æ•°ç»„å¼€å¤´
     obj->tail = (obj->tail + 1) % (obj->k + 1);
     return true;
 }
 
-//³ö¶Ó
+//å‡ºé˜Ÿ
 bool myCircularQueueDeQueue(MyCircularQueue* obj) {
-    //¶ÓÁÐÎª¿Õ·µ»Øfalse
+    //é˜Ÿåˆ—ä¸ºç©ºè¿”å›žfalse
     if (myCircularQueueIsEmpty(obj))
     {
         return false;
     }
-    //head++Ö¸Ïòµ±Ç°¶ÓÍ·µÄÏÂÒ»¸öÎ»ÖÃ£¬È¡Ä£ÓÃÓÚÊµÏÖÑ­»·×÷ÓÃºÍ·ÀÖ¹Ô½½ç·ÃÎÊ
-    //½âÊÍ£ºhead == kÊ±£¬head + 1È¡Ä£k + 1ÈÃheadÖ¸ÏòÊý×é¿ªÍ·
+    //head++æŒ‡å‘å½“å‰é˜Ÿå¤´çš„ä¸‹ä¸€ä¸ªä½ç½®ï¼Œå–æ¨¡ç”¨äºŽå®žçŽ°å¾ªçŽ¯ä½œç”¨å’Œé˜²æ­¢è¶Šç•Œè®¿é—®
+    //è§£é‡Šï¼šhead == kæ—¶ï¼Œhead + 1å–æ¨¡k + 1è®©headæŒ‡å‘æ•°ç»„å¼€å¤´
     obj->head = (obj->head + 1) % (obj->k + 1);
     return true;
 }
 
-//·µ»Ø¶ÓÍ·ÔªËØ
+//è¿”å›žé˜Ÿå¤´å…ƒç´ 
 int myCircularQueueFront(MyCircularQueue* obj) {
-    //¶ÓÁÐÎª¿Õ·µ»Ø-1
+    //é˜Ÿåˆ—ä¸ºç©ºè¿”å›ž-1
     if (myCircularQueueIsEmpty(obj))
     {
         return -1;
@@ -70,21 +69,20 @@ int myCircularQueueFront(MyCircularQueue* obj) {
     return obj->arr[obj->head];
 }
 
-//·µ»Ø¶ÓÎ²ÔªËØ
+//è¿”å›žé˜Ÿå°¾å…ƒç´ 
 int myCircularQueueRear(MyCircularQueue* obj) {
-    //¶ÓÁÐÎª¿Õ·µ»Ø-1
+    //é˜Ÿåˆ—ä¸ºç©ºè¿”å›ž-1
     if (myCircularQueueIsEmpty(obj))
     {
         return -1;
     }
-    //tailÖ¸ÏòÊý×é¿ªÍ·Ê±£¬È¡Ä£ÓÃÓÚÊµÏÖÑ­»·×÷ÓÃºÍ·ÀÖ¹Ô½½ç·ÃÎÊ
-    //½âÊÍ£ºtail == 0Ê±£¬tail - 1 + k + 1È¡Ä£k + 1 == k£¬ÈÃtailµÈÓÚÊý×éÄ©Î²
+    //tailæŒ‡å‘æ•°ç»„å¼€å¤´æ—¶ï¼Œå–æ¨¡ç”¨äºŽå®žçŽ°å¾ªçŽ¯ä½œç”¨å’Œé˜²æ­¢è¶Šç•Œè®¿é—®
+    //è§£é‡Šï¼štail == 0æ—¶ï¼Œtail - 1 + k + 1å–æ¨¡k + 1 == kï¼Œè®©tailç­‰äºŽæ•°ç»„æœ«å°¾
     return obj->arr[(obj->tail - 1 + obj->k + 1) % (obj->k + 1)];
 }
 
-//Ïú»Ù¶ÓÁÐ
+//é”€æ¯é˜Ÿåˆ—
 void myCircularQueueFree(MyCircularQueue* obj) {
     free(obj->arr);
     free(obj);
 }
-*/
