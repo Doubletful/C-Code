@@ -1,5 +1,6 @@
 //LeetCode    707.设计链表
 
+//方法一：单链表
 typedef struct MyLinkedList{
     int val;
     struct MyLinkedList* next;
