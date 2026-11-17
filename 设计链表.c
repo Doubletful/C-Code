@@ -19,14 +19,14 @@ MyLinkedList* myLinkedListCreate() {
 }
 
 int myLinkedListGet(MyLinkedList* obj, int index) {
-    int icur = 0;
     MyLinkedList* cur = obj->next;
-    while (cur && icur != index)
+    for (int i = 0; i < index; i++)
     {
+        if (cur == NULL)
+            return -1;
         cur = cur->next;
-        icur++;
     }
-    return cur && (icur == index) ? cur->val : -1;
+    return cur ? cur->val : -1;
 }
 
 void myLinkedListAddAtHead(MyLinkedList* obj, int val) {
