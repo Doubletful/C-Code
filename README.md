@@ -1,2 +1,2 @@
-# C_Exercises_Code
+# C-Code
 c语言算法题目存储
