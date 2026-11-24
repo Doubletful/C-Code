@@ -1,5 +1,6 @@
 //LeetCode    142.环形链表Ⅱ
 
+//方法一：快慢指针加数学证明
 struct ListNode *detectCycle(struct ListNode *head) {
     struct ListNode* fast = head;
     struct ListNode* slow = head;
