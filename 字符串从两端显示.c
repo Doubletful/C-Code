@@ -2,7 +2,7 @@
 #include <windows.h>
 #include <stdlib.h>
 
-int main001()
+int main()
 {
 	//多个字符从两端移动，向中间汇聚
 	//从遮盖字符串的两端到中间依次显示字符
@@ -31,6 +31,4 @@ int main001()
 	printf("%s\n", string2);
 
 	return 0;
-
 }
-
